@@ -21,7 +21,7 @@ OpenRehabAgent/
 ├── README.md
 ├── LICENSE
 ├── docs/
-│   └── (place your architecture_diagram.png here)
+│   └── architecture diagram
 ├── src/
 │   ├── main.py
 │   ├── pose_agent.py

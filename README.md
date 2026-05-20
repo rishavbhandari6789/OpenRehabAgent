@@ -2,21 +2,25 @@
 
 OpenRehabAgent is a modular multi-agent research prototype for video-based pain localisation and adaptive exercise recommendation.
 
-The repository implements the core software architecture described in the accompanying research outputs on SSRN and Zenodo. It now includes a complete runnable orchestration engine that combines synthetic or external pose landmarks, transparent pain-localisation heuristics, self-reported pain fusion, Q-learning style exercise recommendation, safety supervision, reward modelling, feedback tracking, audit logging, and an LLM-ready explanation layer.
+The repository implements the core software architecture described in the accompanying research outputs on SSRN and Zenodo. It includes a runnable orchestration engine that combines synthetic or external pose landmarks, transparent pain-localisation heuristics, self-reported pain fusion, reinforcement-learning style exercise recommendation, safety supervision, reward modelling, feedback tracking, audit logging, and an LLM-ready explanation layer.
 
 
-## Research alignment
+---
+
+# Research Alignment
 
 - SSRN paper: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5848742
 - Zenodo record: https://zenodo.org/records/17765634
 
-## Core agents
+---
+
+# Core Agents
 
 | Agent | Purpose |
 |---|---|
 | Pose Agent | Generates or adapts pose keypoints and interpretable pose features |
 | Pain Localisation Agent | Estimates region-level discomfort from pose features |
-| Exercise Recommendation Agent | Uses Q-learning style state/action/reward updates for adaptive exercise selection |
+| RL Recommendation Agent | Uses reinforcement-learning style updates for adaptive exercise selection |
 | Supervisor Agent | Applies safety rules before recommendations are returned |
 | Feedback Agent | Records pain, adherence, and user response |
 | LLM Explainer Agent | Produces human-readable explanations without clinical claims |
@@ -24,33 +28,42 @@ The repository implements the core software architecture described in the accomp
 | State Encoder | Converts pain estimates into auditable RL states |
 | Knowledge Base | Stores shared state and audit trail across agents |
 
-## Architecture
+---
+
+# Architecture
 
 ```text
-Video / Synthetic Pose
-        |
-        v
-Pose Agent
-        |
-        v
-Shared Knowledge Base
-   |          |           |
-   v          v           v
-Pain Agent   RL Agent   Supervisor
-   |          |           |
-   +----------+           v
-                          Safe Output
-                              |
-                              v
-                        LLM Explainer
-                              |
-                              v
-                           Feedback
-                              |
-                              v
-                    Shared Knowledge Base
+Video / Synthetic Pose Input
+            │
+            ▼
+      Pose Agent
+            │
+            ▼
+   Shared Knowledge Base
+      ├─────────────────────────────┐
+      │                             │
+      ▼                             ▼
+Pain Localisation Agent     RL Recommendation Agent
+      │                             │
+      └──────────────┬──────────────┘
+                     ▼
+             Supervisor Agent
+                     │
+                     ▼
+           Safe Recommendation
+                     │
+                     ▼
+            LLM Explainer Agent
+                     │
+                     ▼
+               Feedback Agent
+                     │
+                     └──────────────► Shared Knowledge Base
+```
 
-## Repository structure
+---
+
+# Repository Structure
 
 ```text
 OpenRehabAgent/
@@ -69,6 +82,7 @@ OpenRehabAgent/
 │   ├── evaluation-plan.md
 │   └── development-roadmap.md
 ├── examples/
+│   ├── sample_landmarks.json
 │   └── sample_output.json
 ├── src/
 │   ├── main.py
@@ -79,7 +93,12 @@ OpenRehabAgent/
 │   ├── feedback_agent.py
 │   ├── llm_explainer_agent.py
 │   ├── knowledge_base.py
+│   ├── reward_model.py
+│   ├── state_encoder.py
+│   ├── rehab_engine.py
+│   ├── session.py
 │   ├── api/
+│   │   ├── __init__.py
 │   │   └── app.py
 │   └── models/
 │       └── exercise_catalog.py
@@ -87,35 +106,67 @@ OpenRehabAgent/
     └── test_agents.py
 ```
 
-## Quick start
+---
+
+# Quick Start
+
+## Create virtual environment
 
 ```bash
 python -m venv .venv
+```
+
+## Activate environment
+
+macOS/Linux:
+
+```bash
 source .venv/bin/activate
+```
+
+Windows:
+
+```bash
+.venv\Scripts\activate
+```
+
+## Install dependencies
+
+```bash
 pip install -r requirements.txt
+```
+
+## Run orchestration demo
+
+```bash
 python -m src.main --steps 5 --output examples/sample_output.json
 ```
 
-## Run tests
+---
+
+# Run Tests
 
 ```bash
 pytest
 ```
 
-## Run API demo
+---
+
+# Run API Demo
 
 ```bash
 uvicorn src.api.app:app --reload
 ```
 
-Then open:
+Open:
 
 ```text
 http://127.0.0.1:8000/docs
 ```
 
+---
 
-## One-step recommendation API
+# One-Step Recommendation API
 
 Run the API:
 
@@ -131,16 +182,58 @@ curl -X POST http://127.0.0.1:8000/recommend \
   -d @examples/sample_landmarks.json
 ```
 
-The response includes pose features, region-level pain estimates, blocked actions, selected action, exercise instructions, reward, explanation, and audit-ready state.
+The response includes:
 
-## Current status
+- Pose features
+- Region-level pain estimates
+- Blocked actions
+- Selected exercise
+- Exercise instructions
+- Reward signal
+- LLM explanation
+- Audit-ready state information
 
-The current version demonstrates the architecture and agent interaction flow using deterministic synthetic data or external landmark arrays. It is suitable for software research, education, reproducibility, and future extension.
+---
 
-## Limitations
+# Current Status
 
-OpenRehabAgent does not use clinical data and is not intended for patient decision-making. See `docs/safety-and-limitations.md`.
+The current version demonstrates the architecture and agent interaction flow using deterministic synthetic data or externally provided landmark arrays.
 
-## Citation
+The repository is suitable for:
 
-Please use the citation metadata in `CITATION.cff` and cite the associated SSRN and Zenodo research outputs.
+- Software architecture research
+- Reinforcement learning experimentation
+- Explainable AI prototypes
+- Human-AI interaction studies
+- Educational demonstrations
+- Reproducibility research
+
+---
+
+# Safety and Limitations
+
+OpenRehabAgent does not use clinical datasets and is not intended for patient diagnosis or treatment decisions.
+
+See:
+
+```text
+docs/safety-and-limitations.md
+```
+
+---
+
+# Citation
+
+Please use the citation metadata provided in:
+
+```text
+CITATION.cff
+```
+
+and cite the associated SSRN and Zenodo research outputs when referencing this repository.
+
+---
+
+# License
+
+This project is released under the MIT License.

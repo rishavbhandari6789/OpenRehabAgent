@@ -1,0 +1,950 @@
+{
+  "project": "OpenRehabAgent",
+  "version": "0.3.0",
+  "steps": 5,
+  "sessions": [
+    {
+      "step": 1,
+      "state": "region=elbow|pain=low|prev=start",
+      "next_state": "region=elbow|pain=low|prev=wall_push_up",
+      "pose_source": "synthetic",
+      "pose_confidence": 0.95,
+      "pain_regions": {
+        "shoulder": 0.0889,
+        "elbow": 0.2154,
+        "knee": 0.0423,
+        "lower_back": 0.0149,
+        "hip": 0.0432
+      },
+      "pain_explanation": {
+        "shoulder": "pose shoulder asymmetry, arm extension asymmetry, elbow spread, and optional self-report",
+        "elbow": "elbow spread, arm extension asymmetry, and optional self-report",
+        "knee": "knee alignment, stance width, and optional self-report",
+        "lower_back": "trunk lean, hip alignment, movement variance, and optional self-report",
+        "hip": "hip alignment, hip width, and optional self-report"
+      },
+      "highest_region": "elbow",
+      "allowed_actions": [
+        "breathing_reset",
+        "seated_mobility",
+        "light_shoulder_raise",
+        "standing_march",
+        "wall_push_up",
+        "rest"
+      ],
+      "blocked_actions": [
+        "bodyweight_squat"
+      ],
+      "risk_level": "normal",
+      "recommended_action": "wall_push_up",
+      "recommended_exercise": {
+        "name": "wall_push_up",
+        "display_name": "Wall push-up",
+        "target_regions": [
+          "shoulder",
+          "elbow"
+        ],
+        "intensity": "low",
+        "difficulty": 2,
+        "movement_type": "strength",
+        "contraindicated_regions": [
+          "shoulder",
+          "elbow",
+          "wrist"
+        ],
+        "instructions": [
+          "Place hands on a wall at chest height.",
+          "Keep the movement slow and stop if shoulder or elbow discomfort rises."
+        ],
+        "progression": null,
+        "regression": "light_shoulder_raise"
+      },
+      "reward": 0.2385,
+      "completed": true,
+      "explanation": "Recommended action: Wall push-up. The highest estimated discomfort region is elbow with score 0.22. Supervisor decision: No high pain risk detected. Blocked actions: bodyweight_squat. Suggested use: Place hands on a wall at chest height. Keep the movement slow and stop if shoulder or elbow discomfort rises. Research prototype only; not medical advice."
+    },
+    {
+      "step": 2,
+      "state": "region=elbow|pain=low|prev=region=elbow|pain=low|prev=wall_push_up",
+      "next_state": "region=elbow|pain=low|prev=light_shoulder_raise",
+      "pose_source": "synthetic",
+      "pose_confidence": 0.95,
+      "pain_regions": {
+        "shoulder": 0.0776,
+        "elbow": 0.2112,
+        "knee": 0.0366,
+        "lower_back": 0.0149,
+        "hip": 0.0455
+      },
+      "pain_explanation": {
+        "shoulder": "pose shoulder asymmetry, arm extension asymmetry, elbow spread, and optional self-report",
+        "elbow": "elbow spread, arm extension asymmetry, and optional self-report",
+        "knee": "knee alignment, stance width, and optional self-report",
+        "lower_back": "trunk lean, hip alignment, movement variance, and optional self-report",
+        "hip": "hip alignment, hip width, and optional self-report"
+      },
+      "highest_region": "elbow",
+      "allowed_actions": [
+        "breathing_reset",
+        "seated_mobility",
+        "light_shoulder_raise",
+        "standing_march",
+        "wall_push_up",
+        "rest"
+      ],
+      "blocked_actions": [
+        "bodyweight_squat"
+      ],
+      "risk_level": "normal",
+      "recommended_action": "light_shoulder_raise",
+      "recommended_exercise": {
+        "name": "light_shoulder_raise",
+        "display_name": "Light shoulder raise",
+        "target_regions": [
+          "shoulder"
+        ],
+        "intensity": "low",
+        "difficulty": 1,
+        "movement_type": "mobility",
+        "contraindicated_regions": [
+          "shoulder"
+        ],
+        "instructions": [
+          "Raise the arm only to a comfortable height.",
+          "Avoid shrugging or fast movement."
+        ],
+        "progression": "wall_push_up",
+        "regression": "seated_mobility"
+      },
+      "reward": 0.9416,
+      "completed": true,
+      "explanation": "Recommended action: Light shoulder raise. The highest estimated discomfort region is elbow with score 0.21. Supervisor decision: No high pain risk detected. Blocked actions: bodyweight_squat. Suggested use: Raise the arm only to a comfortable height. Avoid shrugging or fast movement. Research prototype only; not medical advice."
+    },
+    {
+      "step": 3,
+      "state": "region=elbow|pain=low|prev=region=elbow|pain=low|prev=light_shoulder_raise",
+      "next_state": "region=elbow|pain=low|prev=wall_push_up",
+      "pose_source": "synthetic",
+      "pose_confidence": 0.95,
+      "pain_regions": {
+        "shoulder": 0.1892,
+        "elbow": 0.2131,
+        "knee": 0.0372,
+        "lower_back": 0.0184,
+        "hip": 0.0335
+      },
+      "pain_explanation": {
+        "shoulder": "pose shoulder asymmetry, arm extension asymmetry, elbow spread, and optional self-report",
+        "elbow": "elbow spread, arm extension asymmetry, and optional self-report",
+        "knee": "knee alignment, stance width, and optional self-report",
+        "lower_back": "trunk lean, hip alignment, movement variance, and optional self-report",
+        "hip": "hip alignment, hip width, and optional self-report"
+      },
+      "highest_region": "elbow",
+      "allowed_actions": [
+        "breathing_reset",
+        "seated_mobility",
+        "light_shoulder_raise",
+        "standing_march",
+        "wall_push_up",
+        "rest"
+      ],
+      "blocked_actions": [
+        "bodyweight_squat"
+      ],
+      "risk_level": "normal",
+      "recommended_action": "wall_push_up",
+      "recommended_exercise": {
+        "name": "wall_push_up",
+        "display_name": "Wall push-up",
+        "target_regions": [
+          "shoulder",
+          "elbow"
+        ],
+        "intensity": "low",
+        "difficulty": 2,
+        "movement_type": "strength",
+        "contraindicated_regions": [
+          "shoulder",
+          "elbow",
+          "wrist"
+        ],
+        "instructions": [
+          "Place hands on a wall at chest height.",
+          "Keep the movement slow and stop if shoulder or elbow discomfort rises."
+        ],
+        "progression": null,
+        "regression": "light_shoulder_raise"
+      },
+      "reward": 0.2402,
+      "completed": true,
+      "explanation": "Recommended action: Wall push-up. The highest estimated discomfort region is elbow with score 0.21. Supervisor decision: No high pain risk detected. Blocked actions: bodyweight_squat. Suggested use: Place hands on a wall at chest height. Keep the movement slow and stop if shoulder or elbow discomfort rises. Research prototype only; not medical advice."
+    },
+    {
+      "step": 4,
+      "state": "region=elbow|pain=low|prev=region=elbow|pain=low|prev=wall_push_up",
+      "next_state": "region=elbow|pain=low|prev=light_shoulder_raise",
+      "pose_source": "synthetic",
+      "pose_confidence": 0.95,
+      "pain_regions": {
+        "shoulder": 0.1928,
+        "elbow": 0.2106,
+        "knee": 0.0321,
+        "lower_back": 0.0137,
+        "hip": 0.0316
+      },
+      "pain_explanation": {
+        "shoulder": "pose shoulder asymmetry, arm extension asymmetry, elbow spread, and optional self-report",
+        "elbow": "elbow spread, arm extension asymmetry, and optional self-report",
+        "knee": "knee alignment, stance width, and optional self-report",
+        "lower_back": "trunk lean, hip alignment, movement variance, and optional self-report",
+        "hip": "hip alignment, hip width, and optional self-report"
+      },
+      "highest_region": "elbow",
+      "allowed_actions": [
+        "breathing_reset",
+        "seated_mobility",
+        "light_shoulder_raise",
+        "standing_march",
+        "wall_push_up",
+        "rest"
+      ],
+      "blocked_actions": [
+        "bodyweight_squat"
+      ],
+      "risk_level": "normal",
+      "recommended_action": "light_shoulder_raise",
+      "recommended_exercise": {
+        "name": "light_shoulder_raise",
+        "display_name": "Light shoulder raise",
+        "target_regions": [
+          "shoulder"
+        ],
+        "intensity": "low",
+        "difficulty": 1,
+        "movement_type": "mobility",
+        "contraindicated_regions": [
+          "shoulder"
+        ],
+        "instructions": [
+          "Raise the arm only to a comfortable height.",
+          "Avoid shrugging or fast movement."
+        ],
+        "progression": "wall_push_up",
+        "regression": "seated_mobility"
+      },
+      "reward": 0.9421,
+      "completed": true,
+      "explanation": "Recommended action: Light shoulder raise. The highest estimated discomfort region is elbow with score 0.21. Supervisor decision: No high pain risk detected. Blocked actions: bodyweight_squat. Suggested use: Raise the arm only to a comfortable height. Avoid shrugging or fast movement. Research prototype only; not medical advice."
+    },
+    {
+      "step": 5,
+      "state": "region=elbow|pain=low|prev=region=elbow|pain=low|prev=light_shoulder_raise",
+      "next_state": "region=elbow|pain=low|prev=wall_push_up",
+      "pose_source": "synthetic",
+      "pose_confidence": 0.95,
+      "pain_regions": {
+        "shoulder": 0.2,
+        "elbow": 0.2081,
+        "knee": 0.0413,
+        "lower_back": 0.0138,
+        "hip": 0.0327
+      },
+      "pain_explanation": {
+        "shoulder": "pose shoulder asymmetry, arm extension asymmetry, elbow spread, and optional self-report",
+        "elbow": "elbow spread, arm extension asymmetry, and optional self-report",
+        "knee": "knee alignment, stance width, and optional self-report",
+        "lower_back": "trunk lean, hip alignment, movement variance, and optional self-report",
+        "hip": "hip alignment, hip width, and optional self-report"
+      },
+      "highest_region": "elbow",
+      "allowed_actions": [
+        "breathing_reset",
+        "seated_mobility",
+        "light_shoulder_raise",
+        "standing_march",
+        "wall_push_up",
+        "rest"
+      ],
+      "blocked_actions": [
+        "bodyweight_squat"
+      ],
+      "risk_level": "normal",
+      "recommended_action": "wall_push_up",
+      "recommended_exercise": {
+        "name": "wall_push_up",
+        "display_name": "Wall push-up",
+        "target_regions": [
+          "shoulder",
+          "elbow"
+        ],
+        "intensity": "low",
+        "difficulty": 2,
+        "movement_type": "strength",
+        "contraindicated_regions": [
+          "shoulder",
+          "elbow",
+          "wrist"
+        ],
+        "instructions": [
+          "Place hands on a wall at chest height.",
+          "Keep the movement slow and stop if shoulder or elbow discomfort rises."
+        ],
+        "progression": null,
+        "regression": "light_shoulder_raise"
+      },
+      "reward": 0.2439,
+      "completed": true,
+      "explanation": "Recommended action: Wall push-up. The highest estimated discomfort region is elbow with score 0.21. Supervisor decision: No high pain risk detected. Blocked actions: bodyweight_squat. Suggested use: Place hands on a wall at chest height. Keep the movement slow and stop if shoulder or elbow discomfort rises. Research prototype only; not medical advice."
+    }
+  ],
+  "feedback_summary": {
+    "sessions": 5,
+    "avg_pain": 0.2117,
+    "completion_rate": 1.0
+  },
+  "feedback_records": [
+    {
+      "pain_score": 0.2154,
+      "completed": true,
+      "notes": "Recommended action: Wall push-up. The highest estimated discomfort region is elbow with score 0.22. Supervisor decision: No high pain risk detected. Blocked actions: bodyweight_squat. Suggested use: Place hands on a wall at chest height. Keep the movement slow and stop if shoulder or elbow discomfort rises. Research prototype only; not medical advice.",
+      "recommended_action": "wall_push_up",
+      "region": "elbow"
+    },
+    {
+      "pain_score": 0.2112,
+      "completed": true,
+      "notes": "Recommended action: Light shoulder raise. The highest estimated discomfort region is elbow with score 0.21. Supervisor decision: No high pain risk detected. Blocked actions: bodyweight_squat. Suggested use: Raise the arm only to a comfortable height. Avoid shrugging or fast movement. Research prototype only; not medical advice.",
+      "recommended_action": "light_shoulder_raise",
+      "region": "elbow"
+    },
+    {
+      "pain_score": 0.2131,
+      "completed": true,
+      "notes": "Recommended action: Wall push-up. The highest estimated discomfort region is elbow with score 0.21. Supervisor decision: No high pain risk detected. Blocked actions: bodyweight_squat. Suggested use: Place hands on a wall at chest height. Keep the movement slow and stop if shoulder or elbow discomfort rises. Research prototype only; not medical advice.",
+      "recommended_action": "wall_push_up",
+      "region": "elbow"
+    },
+    {
+      "pain_score": 0.2106,
+      "completed": true,
+      "notes": "Recommended action: Light shoulder raise. The highest estimated discomfort region is elbow with score 0.21. Supervisor decision: No high pain risk detected. Blocked actions: bodyweight_squat. Suggested use: Raise the arm only to a comfortable height. Avoid shrugging or fast movement. Research prototype only; not medical advice.",
+      "recommended_action": "light_shoulder_raise",
+      "region": "elbow"
+    },
+    {
+      "pain_score": 0.2081,
+      "completed": true,
+      "notes": "Recommended action: Wall push-up. The highest estimated discomfort region is elbow with score 0.21. Supervisor decision: No high pain risk detected. Blocked actions: bodyweight_squat. Suggested use: Place hands on a wall at chest height. Keep the movement slow and stop if shoulder or elbow discomfort rises. Research prototype only; not medical advice.",
+      "recommended_action": "wall_push_up",
+      "region": "elbow"
+    }
+  ],
+  "q_table": {
+    "region=elbow|pain=low|prev=start|wall_push_up": 0.02385,
+    "region=elbow|pain=low|prev=region=elbow|pain=low|prev=wall_push_up|light_shoulder_raise": 0.178954,
+    "region=elbow|pain=low|prev=region=elbow|pain=low|prev=light_shoulder_raise|wall_push_up": 0.046008
+  },
+  "audit_trail": [
+    {
+      "agent": "pose_agent",
+      "event": "set:pose_features",
+      "payload": {
+        "value": {
+          "shoulder_asymmetry": 0.023766585871580537,
+          "shoulder_width": 0.306272339595799,
+          "elbow_spread": 0.46509701437068907,
+          "hip_alignment": 0.019570030356030332,
+          "hip_width": 0.17187218405502636,
+          "knee_alignment": 0.023838404038215244,
+          "knee_width": 0.18634878026663368,
+          "trunk_lean": 0.001155428749214149,
+          "arm_extension_asymmetry": 0.024281171420671183,
+          "movement_variance": 0.051951362122599154,
+          "pose_confidence": 0.95
+        }
+      },
+      "timestamp": "2026-05-20T20:34:23.881807+00:00"
+    },
+    {
+      "agent": "pain_localisation_agent",
+      "event": "set:pain_regions",
+      "payload": {
+        "value": {
+          "shoulder": 0.0889,
+          "elbow": 0.2154,
+          "knee": 0.0423,
+          "lower_back": 0.0149,
+          "hip": 0.0432
+        }
+      },
+      "timestamp": "2026-05-20T20:34:23.881856+00:00"
+    },
+    {
+      "agent": "supervisor_agent",
+      "event": "set:safety_decision",
+      "payload": {
+        "value": {
+          "allowed_actions": [
+            "breathing_reset",
+            "seated_mobility",
+            "light_shoulder_raise",
+            "standing_march",
+            "wall_push_up",
+            "rest"
+          ],
+          "blocked_actions": [
+            "bodyweight_squat"
+          ],
+          "reason": "No high pain risk detected",
+          "risk_level": "normal"
+        }
+      },
+      "timestamp": "2026-05-20T20:34:23.881928+00:00"
+    },
+    {
+      "agent": "openrehab_engine",
+      "event": "session_completed",
+      "payload": {
+        "step": 1,
+        "state": "region=elbow|pain=low|prev=start",
+        "next_state": "region=elbow|pain=low|prev=wall_push_up",
+        "pose_source": "synthetic",
+        "pose_confidence": 0.95,
+        "pain_regions": {
+          "shoulder": 0.0889,
+          "elbow": 0.2154,
+          "knee": 0.0423,
+          "lower_back": 0.0149,
+          "hip": 0.0432
+        },
+        "pain_explanation": {
+          "shoulder": "pose shoulder asymmetry, arm extension asymmetry, elbow spread, and optional self-report",
+          "elbow": "elbow spread, arm extension asymmetry, and optional self-report",
+          "knee": "knee alignment, stance width, and optional self-report",
+          "lower_back": "trunk lean, hip alignment, movement variance, and optional self-report",
+          "hip": "hip alignment, hip width, and optional self-report"
+        },
+        "highest_region": "elbow",
+        "allowed_actions": [
+          "breathing_reset",
+          "seated_mobility",
+          "light_shoulder_raise",
+          "standing_march",
+          "wall_push_up",
+          "rest"
+        ],
+        "blocked_actions": [
+          "bodyweight_squat"
+        ],
+        "risk_level": "normal",
+        "recommended_action": "wall_push_up",
+        "recommended_exercise": {
+          "name": "wall_push_up",
+          "display_name": "Wall push-up",
+          "target_regions": [
+            "shoulder",
+            "elbow"
+          ],
+          "intensity": "low",
+          "difficulty": 2,
+          "movement_type": "strength",
+          "contraindicated_regions": [
+            "shoulder",
+            "elbow",
+            "wrist"
+          ],
+          "instructions": [
+            "Place hands on a wall at chest height.",
+            "Keep the movement slow and stop if shoulder or elbow discomfort rises."
+          ],
+          "progression": null,
+          "regression": "light_shoulder_raise"
+        },
+        "reward": 0.2385,
+        "completed": true,
+        "explanation": "Recommended action: Wall push-up. The highest estimated discomfort region is elbow with score 0.22. Supervisor decision: No high pain risk detected. Blocked actions: bodyweight_squat. Suggested use: Place hands on a wall at chest height. Keep the movement slow and stop if shoulder or elbow discomfort rises. Research prototype only; not medical advice."
+      },
+      "timestamp": "2026-05-20T20:34:23.882037+00:00"
+    },
+    {
+      "agent": "pose_agent",
+      "event": "set:pose_features",
+      "payload": {
+        "value": {
+          "shoulder_asymmetry": 0.008610931378227715,
+          "shoulder_width": 0.3116466286887838,
+          "elbow_spread": 0.4611119117707323,
+          "hip_alignment": 0.023312940251625225,
+          "hip_width": 0.17509757770363266,
+          "knee_alignment": 0.01788899117744669,
+          "knee_width": 0.17267984640489126,
+          "trunk_lean": 1.468019317774072e-06,
+          "arm_extension_asymmetry": 0.014923236495491071,
+          "movement_variance": 0.051379018187608004,
+          "pose_confidence": 0.95
+        }
+      },
+      "timestamp": "2026-05-20T20:34:23.882708+00:00"
+    },
+    {
+      "agent": "pain_localisation_agent",
+      "event": "set:pain_regions",
+      "payload": {
+        "value": {
+          "shoulder": 0.0776,
+          "elbow": 0.2112,
+          "knee": 0.0366,
+          "lower_back": 0.0149,
+          "hip": 0.0455
+        }
+      },
+      "timestamp": "2026-05-20T20:34:23.882724+00:00"
+    },
+    {
+      "agent": "supervisor_agent",
+      "event": "set:safety_decision",
+      "payload": {
+        "value": {
+          "allowed_actions": [
+            "breathing_reset",
+            "seated_mobility",
+            "light_shoulder_raise",
+            "standing_march",
+            "wall_push_up",
+            "rest"
+          ],
+          "blocked_actions": [
+            "bodyweight_squat"
+          ],
+          "reason": "No high pain risk detected",
+          "risk_level": "normal"
+        }
+      },
+      "timestamp": "2026-05-20T20:34:23.882766+00:00"
+    },
+    {
+      "agent": "openrehab_engine",
+      "event": "session_completed",
+      "payload": {
+        "step": 2,
+        "state": "region=elbow|pain=low|prev=region=elbow|pain=low|prev=wall_push_up",
+        "next_state": "region=elbow|pain=low|prev=light_shoulder_raise",
+        "pose_source": "synthetic",
+        "pose_confidence": 0.95,
+        "pain_regions": {
+          "shoulder": 0.0776,
+          "elbow": 0.2112,
+          "knee": 0.0366,
+          "lower_back": 0.0149,
+          "hip": 0.0455
+        },
+        "pain_explanation": {
+          "shoulder": "pose shoulder asymmetry, arm extension asymmetry, elbow spread, and optional self-report",
+          "elbow": "elbow spread, arm extension asymmetry, and optional self-report",
+          "knee": "knee alignment, stance width, and optional self-report",
+          "lower_back": "trunk lean, hip alignment, movement variance, and optional self-report",
+          "hip": "hip alignment, hip width, and optional self-report"
+        },
+        "highest_region": "elbow",
+        "allowed_actions": [
+          "breathing_reset",
+          "seated_mobility",
+          "light_shoulder_raise",
+          "standing_march",
+          "wall_push_up",
+          "rest"
+        ],
+        "blocked_actions": [
+          "bodyweight_squat"
+        ],
+        "risk_level": "normal",
+        "recommended_action": "light_shoulder_raise",
+        "recommended_exercise": {
+          "name": "light_shoulder_raise",
+          "display_name": "Light shoulder raise",
+          "target_regions": [
+            "shoulder"
+          ],
+          "intensity": "low",
+          "difficulty": 1,
+          "movement_type": "mobility",
+          "contraindicated_regions": [
+            "shoulder"
+          ],
+          "instructions": [
+            "Raise the arm only to a comfortable height.",
+            "Avoid shrugging or fast movement."
+          ],
+          "progression": "wall_push_up",
+          "regression": "seated_mobility"
+        },
+        "reward": 0.9416,
+        "completed": true,
+        "explanation": "Recommended action: Light shoulder raise. The highest estimated discomfort region is elbow with score 0.21. Supervisor decision: No high pain risk detected. Blocked actions: bodyweight_squat. Suggested use: Raise the arm only to a comfortable height. Avoid shrugging or fast movement. Research prototype only; not medical advice."
+      },
+      "timestamp": "2026-05-20T20:34:23.882848+00:00"
+    },
+    {
+      "agent": "pose_agent",
+      "event": "set:pose_features",
+      "payload": {
+        "value": {
+          "shoulder_asymmetry": 0.006764509876195812,
+          "shoulder_width": 0.2953999321207773,
+          "elbow_spread": 0.45229226578955417,
+          "hip_alignment": 0.006319955479714978,
+          "hip_width": 0.15304228212457194,
+          "knee_alignment": 0.01105328833614061,
+          "knee_width": 0.20354866963406806,
+          "trunk_lean": 0.012654037972090859,
+          "arm_extension_asymmetry": 0.038100055798857696,
+          "movement_variance": 0.05101464265846284,
+          "pose_confidence": 0.95
+        }
+      },
+      "timestamp": "2026-05-20T20:34:23.883629+00:00"
+    },
+    {
+      "agent": "pain_localisation_agent",
+      "event": "set:pain_regions",
+      "payload": {
+        "value": {
+          "shoulder": 0.1892,
+          "elbow": 0.2131,
+          "knee": 0.0372,
+          "lower_back": 0.0184,
+          "hip": 0.0335
+        }
+      },
+      "timestamp": "2026-05-20T20:34:23.883683+00:00"
+    },
+    {
+      "agent": "supervisor_agent",
+      "event": "set:safety_decision",
+      "payload": {
+        "value": {
+          "allowed_actions": [
+            "breathing_reset",
+            "seated_mobility",
+            "light_shoulder_raise",
+            "standing_march",
+            "wall_push_up",
+            "rest"
+          ],
+          "blocked_actions": [
+            "bodyweight_squat"
+          ],
+          "reason": "No high pain risk detected",
+          "risk_level": "normal"
+        }
+      },
+      "timestamp": "2026-05-20T20:34:23.883744+00:00"
+    },
+    {
+      "agent": "openrehab_engine",
+      "event": "session_completed",
+      "payload": {
+        "step": 3,
+        "state": "region=elbow|pain=low|prev=region=elbow|pain=low|prev=light_shoulder_raise",
+        "next_state": "region=elbow|pain=low|prev=wall_push_up",
+        "pose_source": "synthetic",
+        "pose_confidence": 0.95,
+        "pain_regions": {
+          "shoulder": 0.1892,
+          "elbow": 0.2131,
+          "knee": 0.0372,
+          "lower_back": 0.0184,
+          "hip": 0.0335
+        },
+        "pain_explanation": {
+          "shoulder": "pose shoulder asymmetry, arm extension asymmetry, elbow spread, and optional self-report",
+          "elbow": "elbow spread, arm extension asymmetry, and optional self-report",
+          "knee": "knee alignment, stance width, and optional self-report",
+          "lower_back": "trunk lean, hip alignment, movement variance, and optional self-report",
+          "hip": "hip alignment, hip width, and optional self-report"
+        },
+        "highest_region": "elbow",
+        "allowed_actions": [
+          "breathing_reset",
+          "seated_mobility",
+          "light_shoulder_raise",
+          "standing_march",
+          "wall_push_up",
+          "rest"
+        ],
+        "blocked_actions": [
+          "bodyweight_squat"
+        ],
+        "risk_level": "normal",
+        "recommended_action": "wall_push_up",
+        "recommended_exercise": {
+          "name": "wall_push_up",
+          "display_name": "Wall push-up",
+          "target_regions": [
+            "shoulder",
+            "elbow"
+          ],
+          "intensity": "low",
+          "difficulty": 2,
+          "movement_type": "strength",
+          "contraindicated_regions": [
+            "shoulder",
+            "elbow",
+            "wrist"
+          ],
+          "instructions": [
+            "Place hands on a wall at chest height.",
+            "Keep the movement slow and stop if shoulder or elbow discomfort rises."
+          ],
+          "progression": null,
+          "regression": "light_shoulder_raise"
+        },
+        "reward": 0.2402,
+        "completed": true,
+        "explanation": "Recommended action: Wall push-up. The highest estimated discomfort region is elbow with score 0.21. Supervisor decision: No high pain risk detected. Blocked actions: bodyweight_squat. Suggested use: Place hands on a wall at chest height. Keep the movement slow and stop if shoulder or elbow discomfort rises. Research prototype only; not medical advice."
+      },
+      "timestamp": "2026-05-20T20:34:23.883847+00:00"
+    },
+    {
+      "agent": "pose_agent",
+      "event": "set:pose_features",
+      "payload": {
+        "value": {
+          "shoulder_asymmetry": 0.002319895320168075,
+          "shoulder_width": 0.3127511405313779,
+          "elbow_spread": 0.45360001055559734,
+          "hip_alignment": 0.00336225656481981,
+          "hip_width": 0.15019968817174775,
+          "knee_alignment": 0.00569374034469472,
+          "knee_width": 0.19125036976784587,
+          "trunk_lean": 0.005224487645540288,
+          "arm_extension_asymmetry": 0.025933556961985682,
+          "movement_variance": 0.05096129089714615,
+          "pose_confidence": 0.95
+        }
+      },
+      "timestamp": "2026-05-20T20:34:23.884277+00:00"
+    },
+    {
+      "agent": "pain_localisation_agent",
+      "event": "set:pain_regions",
+      "payload": {
+        "value": {
+          "shoulder": 0.1928,
+          "elbow": 0.2106,
+          "knee": 0.0321,
+          "lower_back": 0.0137,
+          "hip": 0.0316
+        }
+      },
+      "timestamp": "2026-05-20T20:34:23.884290+00:00"
+    },
+    {
+      "agent": "supervisor_agent",
+      "event": "set:safety_decision",
+      "payload": {
+        "value": {
+          "allowed_actions": [
+            "breathing_reset",
+            "seated_mobility",
+            "light_shoulder_raise",
+            "standing_march",
+            "wall_push_up",
+            "rest"
+          ],
+          "blocked_actions": [
+            "bodyweight_squat"
+          ],
+          "reason": "No high pain risk detected",
+          "risk_level": "normal"
+        }
+      },
+      "timestamp": "2026-05-20T20:34:23.884330+00:00"
+    },
+    {
+      "agent": "openrehab_engine",
+      "event": "session_completed",
+      "payload": {
+        "step": 4,
+        "state": "region=elbow|pain=low|prev=region=elbow|pain=low|prev=wall_push_up",
+        "next_state": "region=elbow|pain=low|prev=light_shoulder_raise",
+        "pose_source": "synthetic",
+        "pose_confidence": 0.95,
+        "pain_regions": {
+          "shoulder": 0.1928,
+          "elbow": 0.2106,
+          "knee": 0.0321,
+          "lower_back": 0.0137,
+          "hip": 0.0316
+        },
+        "pain_explanation": {
+          "shoulder": "pose shoulder asymmetry, arm extension asymmetry, elbow spread, and optional self-report",
+          "elbow": "elbow spread, arm extension asymmetry, and optional self-report",
+          "knee": "knee alignment, stance width, and optional self-report",
+          "lower_back": "trunk lean, hip alignment, movement variance, and optional self-report",
+          "hip": "hip alignment, hip width, and optional self-report"
+        },
+        "highest_region": "elbow",
+        "allowed_actions": [
+          "breathing_reset",
+          "seated_mobility",
+          "light_shoulder_raise",
+          "standing_march",
+          "wall_push_up",
+          "rest"
+        ],
+        "blocked_actions": [
+          "bodyweight_squat"
+        ],
+        "risk_level": "normal",
+        "recommended_action": "light_shoulder_raise",
+        "recommended_exercise": {
+          "name": "light_shoulder_raise",
+          "display_name": "Light shoulder raise",
+          "target_regions": [
+            "shoulder"
+          ],
+          "intensity": "low",
+          "difficulty": 1,
+          "movement_type": "mobility",
+          "contraindicated_regions": [
+            "shoulder"
+          ],
+          "instructions": [
+            "Raise the arm only to a comfortable height.",
+            "Avoid shrugging or fast movement."
+          ],
+          "progression": "wall_push_up",
+          "regression": "seated_mobility"
+        },
+        "reward": 0.9421,
+        "completed": true,
+        "explanation": "Recommended action: Light shoulder raise. The highest estimated discomfort region is elbow with score 0.21. Supervisor decision: No high pain risk detected. Blocked actions: bodyweight_squat. Suggested use: Raise the arm only to a comfortable height. Avoid shrugging or fast movement. Research prototype only; not medical advice."
+      },
+      "timestamp": "2026-05-20T20:34:23.884397+00:00"
+    },
+    {
+      "agent": "pose_agent",
+      "event": "set:pose_features",
+      "payload": {
+        "value": {
+          "shoulder_asymmetry": 0.0011012132668970498,
+          "shoulder_width": 0.32067157690417153,
+          "elbow_spread": 0.4418704805751278,
+          "hip_alignment": 0.0016031462163951238,
+          "hip_width": 0.1598111886855195,
+          "knee_alignment": 0.023580672306295458,
+          "knee_width": 0.18095464896378186,
+          "trunk_lean": 0.005764286095736926,
+          "arm_extension_asymmetry": 0.036847677308425,
+          "movement_variance": 0.05164675150696274,
+          "pose_confidence": 0.95
+        }
+      },
+      "timestamp": "2026-05-20T20:34:23.884958+00:00"
+    },
+    {
+      "agent": "pain_localisation_agent",
+      "event": "set:pain_regions",
+      "payload": {
+        "value": {
+          "shoulder": 0.2,
+          "elbow": 0.2081,
+          "knee": 0.0413,
+          "lower_back": 0.0138,
+          "hip": 0.0327
+        }
+      },
+      "timestamp": "2026-05-20T20:34:23.884972+00:00"
+    },
+    {
+      "agent": "supervisor_agent",
+      "event": "set:safety_decision",
+      "payload": {
+        "value": {
+          "allowed_actions": [
+            "breathing_reset",
+            "seated_mobility",
+            "light_shoulder_raise",
+            "standing_march",
+            "wall_push_up",
+            "rest"
+          ],
+          "blocked_actions": [
+            "bodyweight_squat"
+          ],
+          "reason": "No high pain risk detected",
+          "risk_level": "normal"
+        }
+      },
+      "timestamp": "2026-05-20T20:34:23.885008+00:00"
+    },
+    {
+      "agent": "openrehab_engine",
+      "event": "session_completed",
+      "payload": {
+        "step": 5,
+        "state": "region=elbow|pain=low|prev=region=elbow|pain=low|prev=light_shoulder_raise",
+        "next_state": "region=elbow|pain=low|prev=wall_push_up",
+        "pose_source": "synthetic",
+        "pose_confidence": 0.95,
+        "pain_regions": {
+          "shoulder": 0.2,
+          "elbow": 0.2081,
+          "knee": 0.0413,
+          "lower_back": 0.0138,
+          "hip": 0.0327
+        },
+        "pain_explanation": {
+          "shoulder": "pose shoulder asymmetry, arm extension asymmetry, elbow spread, and optional self-report",
+          "elbow": "elbow spread, arm extension asymmetry, and optional self-report",
+          "knee": "knee alignment, stance width, and optional self-report",
+          "lower_back": "trunk lean, hip alignment, movement variance, and optional self-report",
+          "hip": "hip alignment, hip width, and optional self-report"
+        },
+        "highest_region": "elbow",
+        "allowed_actions": [
+          "breathing_reset",
+          "seated_mobility",
+          "light_shoulder_raise",
+          "standing_march",
+          "wall_push_up",
+          "rest"
+        ],
+        "blocked_actions": [
+          "bodyweight_squat"
+        ],
+        "risk_level": "normal",
+        "recommended_action": "wall_push_up",
+        "recommended_exercise": {
+          "name": "wall_push_up",
+          "display_name": "Wall push-up",
+          "target_regions": [
+            "shoulder",
+            "elbow"
+          ],
+          "intensity": "low",
+          "difficulty": 2,
+          "movement_type": "strength",
+          "contraindicated_regions": [
+            "shoulder",
+            "elbow",
+            "wrist"
+          ],
+          "instructions": [
+            "Place hands on a wall at chest height.",
+            "Keep the movement slow and stop if shoulder or elbow discomfort rises."
+          ],
+          "progression": null,
+          "regression": "light_shoulder_raise"
+        },
+        "reward": 0.2439,
+        "completed": true,
+        "explanation": "Recommended action: Wall push-up. The highest estimated discomfort region is elbow with score 0.21. Supervisor decision: No high pain risk detected. Blocked actions: bodyweight_squat. Suggested use: Place hands on a wall at chest height. Keep the movement slow and stop if shoulder or elbow discomfort rises. Research prototype only; not medical advice."
+      },
+      "timestamp": "2026-05-20T20:34:23.885076+00:00"
+    }
+  ],
+  "disclaimer": "Research prototype only. Not a medical device or clinical decision system."
+}

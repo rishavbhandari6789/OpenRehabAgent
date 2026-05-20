@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+title: "OpenRehabAgent: A Modular Multi-Agent Architecture for Video-Based Pain Localisation and Adaptive Exercise Recommendation"
+message: "If you use this research prototype, please cite the accompanying paper and repository."
+type: software
+authors:
+  - family-names: Bhandari
+    given-names: Rishav
+repository-code: "https://github.com/rishavbhandari6789/OpenRehabAgent"
+abstract: "OpenRehabAgent is a modular multi-agent research prototype for video-based pain localisation and adaptive exercise recommendation."
+keywords:
+  - multi-agent systems
+  - rehabilitation technology
+  - pose estimation
+  - reinforcement learning
+  - responsible AI
+  - exercise recommendation
+license: MIT
+version: "0.3.0"
+date-released: "2026-05-20"

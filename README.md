@@ -4,7 +4,6 @@ OpenRehabAgent is a modular multi-agent research prototype for video-based pain 
 
 The repository implements the core software architecture described in the accompanying research outputs on SSRN and Zenodo. It now includes a complete runnable orchestration engine that combines synthetic or external pose landmarks, transparent pain-localisation heuristics, self-reported pain fusion, Q-learning style exercise recommendation, safety supervision, reward modelling, feedback tracking, audit logging, and an LLM-ready explanation layer.
 
-> Research prototype only. OpenRehabAgent is not a medical device and does not provide medical advice.
 
 ## Research alignment
 
@@ -29,16 +28,22 @@ The repository implements the core software architecture described in the accomp
 
 ```mermaid
 flowchart TD
-    A[Video or Synthetic Pose Input] --> B[Pose Agent]
-    B --> C[Shared Knowledge Base]
-    C --> D[Pain Localisation Agent]
+    A["Video or Synthetic<br>Pose Input"] --> B["Pose Agent<br>"]
+
+    B --> C["Shared Knowledge<br>Base"]
+
+    C --> D["Pain Localisation<br>Agent"]
     D --> C
-    C --> E[Exercise Recommendation Agent]
+
+    C --> E["Exercise Recommendation<br>Agent"]
     E --> C
-    C --> F[Supervisor Agent]
-    F --> G[Safe Recommendation]
-    G --> H[LLM Explainer Agent]
-    H --> I[Feedback Agent]
+
+    C --> F["Supervisor<br>Agent"]
+    F --> G["Safe<br>Recommendation"]
+
+    G --> H["LLM Explainer<br>Agent"]
+
+    H --> I["Feedback<br>Agent"]
     I --> C
 ```
 

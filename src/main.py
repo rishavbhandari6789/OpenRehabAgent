@@ -1,52 +1,57 @@
-"""End-to-end simulation for OpenRehabAgent.
+"""Command-line simulation for OpenRehabAgent."""
 
-This script wires together the agents and simulates a small number of steps.
-It is not connected to real video input but demonstrates the intended data flow.
-"""
+from __future__ import annotations
 
-from .pose_agent import PoseAgent
-from .pain_localization_agent import PainLocalizationAgent
-from .rl_agent import RLAgent
-from .supervisor_agent import SupervisorAgent
-from .feedback_agent import FeedbackAgent
-from .knowledge_base import KnowledgeBase
+import argparse
+import json
+from pathlib import Path
+from typing import Any, Dict, List
+
+from .rehab_engine import OpenRehabEngine
+from .session import SessionInput, UserProfile
 
 
-def run_simulation(steps: int = 5) -> None:
-    pose_agent = PoseAgent()
-    pain_agent = PainLocalizationAgent()
-    actions = ["light_shoulder_raise", "bodyweight_squat", "rest"]
-    rl_agent = RLAgent(actions=actions)
-    supervisor = SupervisorAgent(pain_threshold=0.6)
-    feedback_agent = FeedbackAgent()
-    kb = KnowledgeBase()
+def run_simulation(steps: int = 5, output_path: str | None = None) -> Dict[str, Any]:
+    engine = OpenRehabEngine(seed=42, pain_threshold=0.55)
+    sessions: List[Dict[str, Any]] = []
 
-    state = "start"
+    for step in range(steps):
+        synthetic_report = {}
+        if step >= max(2, steps // 2):
+            synthetic_report = {"shoulder": 0.35 + min(0.25, step * 0.02)}
+        session = engine.recommend(
+            SessionInput(
+                self_reported_pain=synthetic_report,
+                user_profile=UserProfile(preferred_intensity="low", experience_level="beginner"),
+            )
+        )
+        sessions.append(session)
 
-    for t in range(steps):
-        pose = pose_agent.process_frame()
-        pain = pain_agent.estimate_pain(pose)
-        kb.set("pain", pain.regions)
+    result: Dict[str, Any] = {
+        "project": "OpenRehabAgent",
+        "version": "0.3.0",
+        "steps": steps,
+        "sessions": sessions,
+        **engine.summary(),
+        "disclaimer": "Research prototype only. Not a medical device or clinical decision system.",
+    }
 
-        allowed_actions = supervisor.filter_actions(pain.regions, actions)
-        if not allowed_actions:
-            chosen = "rest"
-        else:
-            chosen = rl_agent.select_action(state)
+    if output_path:
+        path = Path(output_path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(result, indent=2))
+    return result
 
-        # Simple reward: prefer lower pain and completion of non-rest actions.
-        max_pain = max(pain.regions.values()) if pain.regions else 0.0
-        reward = -max_pain
-        completed = chosen != "rest"
-        feedback_agent.record_feedback(pain_score=max_pain, completed=completed, notes=f"Action: {chosen}")
 
-        next_state = "after_" + chosen
-        rl_agent.update(state, chosen, reward, next_state)
-        state = next_state
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Run OpenRehabAgent simulation")
+    parser.add_argument("--steps", type=int, default=5)
+    parser.add_argument("--output", type=str, default="")
+    args = parser.parse_args()
 
-    print("Simulation finished.")
-    print(feedback_agent.summary())
+    result = run_simulation(steps=args.steps, output_path=args.output or None)
+    print(json.dumps({"feedback_summary": result["feedback_summary"], "disclaimer": result["disclaimer"]}, indent=2))
 
 
 if __name__ == "__main__":
-    run_simulation()
+    main()

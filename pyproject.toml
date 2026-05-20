@@ -1,0 +1,13 @@
+[project]
+name = "openrehabagent"
+version = "0.3.0"
+description = "A modular multi-agent research prototype for video-based pain localisation and adaptive exercise recommendation."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Rishav Bhandari" }]
+license = { text = "MIT" }
+keywords = ["multi-agent systems", "rehabilitation", "pose estimation", "reinforcement learning", "responsible AI"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

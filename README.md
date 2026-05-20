@@ -26,26 +26,29 @@ The repository implements the core software architecture described in the accomp
 
 ## Architecture
 
-```mermaid
-flowchart TD
-    A["Video or Synthetic<br>Pose Input"] --> B["Pose Agent<br>"]
-
-    B --> C["Shared Knowledge<br>Base"]
-
-    C --> D["Pain Localisation<br>Agent"]
-    D --> C
-
-    C --> E["Exercise Recommendation<br>Agent"]
-    E --> C
-
-    C --> F["Supervisor<br>Agent"]
-    F --> G["Safe<br>Recommendation"]
-
-    G --> H["LLM Explainer<br>Agent"]
-
-    H --> I["Feedback<br>Agent"]
-    I --> C
-```
+```text
+Video / Synthetic Pose
+        |
+        v
+Pose Agent
+        |
+        v
+Shared Knowledge Base
+   |          |           |
+   v          v           v
+Pain Agent   RL Agent   Supervisor
+   |          |           |
+   +----------+           v
+                          Safe Output
+                              |
+                              v
+                        LLM Explainer
+                              |
+                              v
+                           Feedback
+                              |
+                              v
+                    Shared Knowledge Base
 
 ## Repository structure
 
